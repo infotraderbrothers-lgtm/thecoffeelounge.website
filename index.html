@@ -4,350 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Edinburgh Coffee Lounge</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f5f0 0%, #ffffff 100%);
-            color: #333;
-            line-height: 1.6;
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2rem 5%;
-            text-align: center;
-            border-bottom: 1px solid #e8e8e8;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: #2c2c2c;
-            margin-bottom: 0.5rem;
-        }
-
-        .tagline {
-            font-size: 1.1rem;
-            color: #888;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .hero {
-            height: 60vh;
-            background: linear-gradient(to bottom, rgba(245, 245, 240, 0.8), rgba(255, 255, 255, 0.9)),
-                        url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect fill="%23f5f5f0" width="100" height="100"/><circle cx="50" cy="50" r="30" fill="%23e8e8e8" opacity="0.3"/></svg>');
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .hero-content h2 {
-            font-size: 2.5rem;
-            font-weight: 200;
-            color: #2c2c2c;
-            margin-bottom: 1rem;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 5%;
-        }
-
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            height: 500px;
-            margin: 0 auto 4rem;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .carousel-track {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .carousel-slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transform: translateX(100%);
-            transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
-        }
-
-        .carousel-slide.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .carousel-slide.prev {
-            opacity: 0;
-            transform: translateX(-100%);
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .carousel-nav {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 10;
-        }
-
-        .carousel-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            border: 2px solid white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-dot.active {
-            background: white;
-            transform: scale(1.2);
-        }
-
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: #2c2c2c;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .carousel-arrow:hover {
-            background: white;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-arrow.prev {
-            left: 20px;
-        }
-
-        .carousel-arrow.next {
-            right: 20px;
-        }
-
-        .info-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .info-card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-            border: 1px solid #f0f0f0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
-        }
-
-        .info-card h3 {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 1.5rem;
-            color: #2c2c2c;
-            letter-spacing: 1px;
-        }
-
-        .address {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .email {
-            color: #4a90e2;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .email:hover {
-            color: #357abd;
-        }
-
-        .directions-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.8rem 1.5rem;
-            background: #2c2c2c;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-
-        .directions-link:hover {
-            background: #1a1a1a;
-            transform: scale(1.05);
-        }
-
-        .hours-list {
-            list-style: none;
-        }
-
-        .hours-list li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            justify-content: space-between;
-            font-size: 1rem;
-            color: #555;
-        }
-
-        .hours-list li:last-child {
-            border-bottom: none;
-        }
-
-        .day {
-            font-weight: 500;
-            color: #2c2c2c;
-        }
-
-        .map-section {
-            margin-bottom: 3rem;
-        }
-
-        .map-container {
-            width: 100%;
-            height: 500px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            border: 3px solid #2c2c2c;
-            margin-bottom: 2rem;
-        }
-
-        .directions-button {
-            display: block;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 1.2rem 2rem;
-            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            border: none;
-            cursor: pointer;
-        }
-
-        .directions-button:hover {
-            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .directions-button:active {
-            transform: translateY(-1px);
-        }
-
-        footer {
-            background: rgba(44, 44, 44, 0.95);
-            color: #f5f5f0;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-
-        footer p {
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 768px) {
-            .info-section {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content h2 {
-                font-size: 1.8rem;
-            }
-
-            .map-container {
-                height: 350px;
-            }
-
-            .carousel-container {
-                height: 350px;
-            }
-
-            .carousel-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -367,22 +24,22 @@
         <div class="carousel-container">
             <div class="carousel-track">
                 <div class="carousel-slide active">
-                    <img src="images/coffee-1.jpg" alt="Coffee shop interior">
+                    <img src="https://github.com/infotraderbrothers-lgtm/thecoffeelounge.website/blob/main/images/coffee.jpeg?raw=true" alt="Coffee shop interior">
                 </div>
                 <div class="carousel-slide">
-                    <img src="images/coffee-2.jpg" alt="Espresso machine">
+                    <img src="https://github.com/infotraderbrothers-lgtm/thecoffeelounge.website/blob/main/images/coffee3.webp?raw=true" alt="Espresso machine">
                 </div>
                 <div class="carousel-slide">
-                    <img src="images/coffee-3.jpg" alt="Latte art">
+                    <img src="https://github.com/infotraderbrothers-lgtm/thecoffeelounge.website/blob/main/images/coffee4.webp?raw=true" alt="Latte art">
                 </div>
                 <div class="carousel-slide">
-                    <img src="images/coffee-4.jpg" alt="Coffee shop atmosphere">
+                    <img src="https://github.com/infotraderbrothers-lgtm/thecoffeelounge.website/blob/main/images/coffee5.webp?raw=true" alt="Coffee shop atmosphere">
                 </div>
                 <div class="carousel-slide">
-                    <img src="images/coffee-5.jpg" alt="Coffee beans">
+                    <img src="https://github.com/infotraderbrothers-lgtm/thecoffeelounge.website/blob/main/images/coffee6.webp?raw=true" alt="Coffee beans">
                 </div>
                 <div class="carousel-slide">
-                    <img src="images/coffee-6.jpg" alt="Café seating area">
+                    <img src="https://github.com/infotraderbrothers-lgtm/thecoffeelounge.website/blob/main/images/coffee7.webp?raw=true" alt="Café seating area">
                 </div>
             </div>
 
@@ -400,14 +57,102 @@
         </div>
 
         <div class="info-section">
-            <div class="info-card">
-                <h3>Location</h3>
-                <div class="address">
-                    <strong>9 St. Patrick Street</strong><br>
-                    EDINBURGH, EH8 9HB
+            <div class="column-stack">
+                <div class="info-card">
+                    <h3>Location</h3>
+                    <div class="address">
+                        <strong>9 St. Patrick Street</strong><br>
+                        EDINBURGH, EH8 9HB
+                    </div>
+                    <button class="directions-link" onclick="getDirections()">Get Directions</button>
                 </div>
-                <a href="mailto:hello@theedinburghcoffeelounge.uk" class="email">hello@theedinburghcoffeelounge.uk</a>
-                <br>
+
+                <div class="info-card">
+                    <h3>Book A Table</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">Reserve your spot at our lounge</p>
+                    <button class="directions-link" onclick="toggleBookingForm()">Book Now</button>
+                    
+                    <div id="bookingForm" class="booking-form">
+                        <div class="form-group">
+                            <label>Seating Preference</label>
+                            <div class="seating-options">
+                                <div class="seating-option" onclick="selectSeating(this, 'window')">
+                                    <div>🪟</div>
+                                    <div style="font-size: 0.85rem; margin-top: 0.3rem;">Window</div>
+                                </div>
+                                <div class="seating-option" onclick="selectSeating(this, 'indoor')">
+                                    <div>🏠</div>
+                                    <div style="font-size: 0.85rem; margin-top: 0.3rem;">Indoor</div>
+                                </div>
+                                <div class="seating-option" onclick="selectSeating(this, 'any')">
+                                    <div>✨</div>
+                                    <div style="font-size: 0.85rem; margin-top: 0.3rem;">Any</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bookingDate">Date</label>
+                            <input type="date" id="bookingDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bookingTime">Time</label>
+                            <select id="bookingTime" required>
+                                <option value="">Select a time</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="09:30">9:30 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="10:30">10:30 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="11:30">11:30 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="12:30">12:30 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="13:30">1:30 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="14:30">2:30 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="15:30">3:30 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="16:30">4:30 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="17:30">5:30 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guestCount">Number of Guests</label>
+                            <select id="guestCount" required>
+                                <option value="">Select guests</option>
+                                <option value="1">1 Guest</option>
+                                <option value="2">2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5">5 Guests</option>
+                                <option value="6">6+ Guests</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guestName">Name</label>
+                            <input type="text" id="guestName" placeholder="Your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guestEmail">Email</label>
+                            <input type="email" id="guestEmail" placeholder="your@email.com" required>
+                        </div>
+                        
+                        <button class="submit-booking" onclick="submitBooking()">Confirm Booking</button>
+                    </div>
+                    
+                    <div id="bookingConfirmation" class="booking-confirmation">
+                        <h4>✓ Booking Confirmed!</h4>
+                        <p style="color: #666; margin-top: 0.5rem;">We'll send you a confirmation email shortly.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="info-card">
@@ -439,90 +184,57 @@
                  Get Directions From My Location
             </button>
         </div>
+
+        <div class="connect-section">
+            <h3>Connect With Us</h3>
+            <p>Stay updated with exclusive deals and weekly specials</p>
+            
+            <div id="signupConfirmation" class="signup-confirmation">
+                <strong>✓ Thank you for subscribing!</strong>
+                <p style="margin-top: 0.3rem; color: #666;">Check your email for exclusive offers.</p>
+            </div>
+            
+            <div class="email-signup">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+                <button onclick="submitNewsletter()">Sign Up</button>
+            </div>
+            
+            <div class="consent-checkbox">
+                <input type="checkbox" id="newsletterConsent" required>
+                <label for="newsletterConsent">
+                    I agree to receive exclusive deals and brand new weekly offers. You can cancel at any time.
+                </label>
+            </div>
+            
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" class="social-icon" title="Facebook">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="social-icon" title="Instagram">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="social-icon" title="Twitter/X">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://tiktok.com" target="_blank" class="social-icon" title="TikTok">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
     </div>
 
     <footer>
         <p>© 2024 The Edinburgh Coffee Lounge. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        // Get Directions function
-        function getDirections() {
-            const destination = '9 St Patrick Street, Edinburgh, EH8 9HB, UK';
-            const encodedDestination = encodeURIComponent(destination);
-            
-            // Open Google Maps with directions from user's current location
-            const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedDestination}`;
-            window.open(mapsUrl, '_blank');
-        }
-
-        // Carousel functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.carousel-dot');
-        const totalSlides = slides.length;
-
-        function showSlide(n, direction = 'next') {
-            // Remove all classes from current slide
-            slides[currentSlide].classList.remove('active');
-            if (direction === 'next') {
-                slides[currentSlide].classList.add('prev');
-            }
-            dots[currentSlide].classList.remove('active');
-            
-            // Calculate new slide index
-            currentSlide = (n + totalSlides) % totalSlides;
-            
-            // Set up next slide to come from right
-            if (direction === 'next') {
-                slides[currentSlide].style.transform = 'translateX(100%)';
-                slides[currentSlide].style.opacity = '0';
-            } else {
-                slides[currentSlide].style.transform = 'translateX(-100%)';
-                slides[currentSlide].style.opacity = '0';
-            }
-            
-            // Force reflow
-            slides[currentSlide].offsetHeight;
-            
-            // Activate new slide
-            slides[currentSlide].classList.add('active');
-            slides[currentSlide].style.transform = 'translateX(0)';
-            slides[currentSlide].style.opacity = '1';
-            dots[currentSlide].classList.add('active');
-            
-            // Clean up previous slides after transition
-            setTimeout(() => {
-                slides.forEach((slide, index) => {
-                    if (index !== currentSlide) {
-                        slide.classList.remove('prev');
-                    }
-                });
-            }, 1500);
-        }
-
-        function nextSlide() {
-            showSlide(currentSlide + 1, 'next');
-        }
-
-        function prevSlide() {
-            showSlide(currentSlide - 1, 'prev');
-        }
-
-        // Arrow button event listeners
-        document.querySelector('.carousel-arrow.next').addEventListener('click', nextSlide);
-        document.querySelector('.carousel-arrow.prev').addEventListener('click', prevSlide);
-
-        // Dot navigation
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                const direction = index > currentSlide ? 'next' : 'prev';
-                showSlide(index, direction);
-            });
-        });
-
-        // Auto-advance carousel every 5 seconds
-        setInterval(nextSlide, 5000);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
