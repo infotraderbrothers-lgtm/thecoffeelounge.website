@@ -68,7 +68,7 @@ h1 {
     height: 85vh;
     margin: 0 -5%;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)),
-                url('https://github.com/infotraderbrothers-lgtm/thecoffeelounge.website/blob/main/images/webbanner.webp?raw=true');
+                url('https://github.com/infotraderbrothers-lgtm/thecoffeelounge.website/blob/main/images/webbanner.webp?raw=true'');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
