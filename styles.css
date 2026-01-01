@@ -14,9 +14,9 @@ body {
 }
 
 header {
-    background: #000000;
+    background: #4a4a4a;
     padding: 1rem 5%;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #5a5a5a;
     position: absolute;
     top: 0;
     left: 0;
@@ -677,5 +677,17 @@ footer p {
 
     .seating-options {
         flex-direction: column;
+    }
+
+    .reviews-section {
+        padding: 3rem 5%;
+    }
+
+    .reviews-section h3 {
+        font-size: 2rem;
+    }
+
+    .reviews-container {
+        grid-template-columns: 1fr;
     }
 }
