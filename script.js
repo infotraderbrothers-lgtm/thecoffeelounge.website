@@ -8,102 +8,123 @@ function getDirections() {
     window.open(mapsUrl, '_blank');
 }
 
-// Carousel functionality
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const dots = document.querySelectorAll('.carousel-dot');
-const totalSlides = slides.length;
-let autoPlayInterval;
-
-function showSlide(n, direction = 'next') {
-    // Remove all classes from current slide
-    slides[currentSlide].classList.remove('active', 'prev');
-    dots[currentSlide].classList.remove('active');
-    
-    // Calculate new slide index with proper wrapping
-    if (n >= totalSlides) {
-        currentSlide = 0;
-    } else if (n < 0) {
-        currentSlide = totalSlides - 1;
-    } else {
-        currentSlide = n;
+// Carousel functionality for multiple carousels
+class CarouselManager {
+    constructor(carouselNumber) {
+        this.carouselNumber = carouselNumber;
+        this.currentSlide = 0;
+        this.slides = document.querySelectorAll(`[data-carousel="${carouselNumber}"].carousel-track .carousel-slide`);
+        this.dots = document.querySelectorAll(`[data-carousel="${carouselNumber}"].carousel-nav .carousel-dot`);
+        this.totalSlides = this.slides.length;
+        this.autoPlayInterval = null;
+        
+        this.init();
     }
     
-    // Clean up all slides first
-    slides.forEach((slide, index) => {
-        if (index !== currentSlide) {
-            slide.classList.remove('active', 'prev');
-            slide.style.opacity = '0';
-            slide.style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
+    init() {
+        // Arrow button event listeners
+        const nextBtn = document.querySelector(`.carousel-arrow.next[data-carousel="${this.carouselNumber}"]`);
+        const prevBtn = document.querySelector(`.carousel-arrow.prev[data-carousel="${this.carouselNumber}"]`);
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                this.nextSlide();
+                this.startAutoPlay();
+            });
         }
-    });
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                this.prevSlide();
+                this.startAutoPlay();
+            });
+        }
+        
+        // Dot navigation
+        this.dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                const direction = index > this.currentSlide ? 'next' : 'prev';
+                this.showSlide(index, direction);
+                this.startAutoPlay();
+            });
+        });
+        
+        // Start auto-advance
+        this.startAutoPlay();
+    }
     
-    // Set up next slide position
-    slides[currentSlide].style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
-    slides[currentSlide].style.opacity = '0';
+    showSlide(n, direction = 'next') {
+        // Remove all classes from current slide
+        this.slides[this.currentSlide].classList.remove('active', 'prev');
+        this.dots[this.currentSlide].classList.remove('active');
+        
+        // Calculate new slide index with proper wrapping
+        if (n >= this.totalSlides) {
+            this.currentSlide = 0;
+        } else if (n < 0) {
+            this.currentSlide = this.totalSlides - 1;
+        } else {
+            this.currentSlide = n;
+        }
+        
+        // Clean up all slides first
+        this.slides.forEach((slide, index) => {
+            if (index !== this.currentSlide) {
+                slide.classList.remove('active', 'prev');
+                slide.style.opacity = '0';
+                slide.style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
+            }
+        });
+        
+        // Set up next slide position
+        this.slides[this.currentSlide].style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
+        this.slides[this.currentSlide].style.opacity = '0';
+        
+        // Force reflow
+        this.slides[this.currentSlide].offsetHeight;
+        
+        // Activate new slide
+        this.slides[this.currentSlide].classList.add('active');
+        this.slides[this.currentSlide].style.transform = 'translateX(0)';
+        this.slides[this.currentSlide].style.opacity = '1';
+        this.dots[this.currentSlide].classList.add('active');
+    }
     
-    // Force reflow
-    slides[currentSlide].offsetHeight;
+    nextSlide() {
+        this.showSlide(this.currentSlide + 1, 'next');
+    }
     
-    // Activate new slide
-    slides[currentSlide].classList.add('active');
-    slides[currentSlide].style.transform = 'translateX(0)';
-    slides[currentSlide].style.opacity = '1';
-    dots[currentSlide].classList.add('active');
-}
-
-function nextSlide() {
-    showSlide(currentSlide + 1, 'next');
-}
-
-function prevSlide() {
-    showSlide(currentSlide - 1, 'prev');
-}
-
-function startAutoPlay() {
-    stopAutoPlay();
-    autoPlayInterval = setInterval(nextSlide, 5000);
-}
-
-function stopAutoPlay() {
-    if (autoPlayInterval) {
-        clearInterval(autoPlayInterval);
+    prevSlide() {
+        this.showSlide(this.currentSlide - 1, 'prev');
+    }
+    
+    startAutoPlay() {
+        this.stopAutoPlay();
+        this.autoPlayInterval = setInterval(() => this.nextSlide(), 5000);
+    }
+    
+    stopAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+        }
     }
 }
 
-// Arrow button event listeners
-document.querySelector('.carousel-arrow.next').addEventListener('click', () => {
-    nextSlide();
-    startAutoPlay();
-});
-
-document.querySelector('.carousel-arrow.prev').addEventListener('click', () => {
-    prevSlide();
-    startAutoPlay();
-});
-
-// Dot navigation
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        const direction = index > currentSlide ? 'next' : 'prev';
-        showSlide(index, direction);
-        startAutoPlay();
-    });
-});
-
-// Start auto-advance carousel
-startAutoPlay();
+// Initialize all three carousels
+const carousel1 = new CarouselManager(1);
+const carousel2 = new CarouselManager(2);
+const carousel3 = new CarouselManager(3);
 
 // Booking form functionality
 let selectedSeating = '';
 
 function toggleBookingForm() {
-    const form = document.getElementById('bookingForm');
+    const popup = document.getElementById('bookingPopup');
     const overlay = document.getElementById('bookingOverlay');
     const confirmation = document.getElementById('bookingConfirmation');
     
     confirmation.classList.remove('active');
-    form.classList.toggle('active');
+    popup.classList.toggle('active');
     overlay.classList.toggle('active');
     
     // Set minimum date to today
@@ -112,7 +133,7 @@ function toggleBookingForm() {
     dateInput.setAttribute('min', today);
     
     // Prevent body scroll when popup is open
-    if (form.classList.contains('active')) {
+    if (popup.classList.contains('active')) {
         document.body.style.overflow = 'hidden';
     } else {
         document.body.style.overflow = '';
@@ -120,10 +141,10 @@ function toggleBookingForm() {
 }
 
 function closeBookingForm() {
-    const form = document.getElementById('bookingForm');
+    const popup = document.getElementById('bookingPopup');
     const overlay = document.getElementById('bookingOverlay');
     
-    form.classList.remove('active');
+    popup.classList.remove('active');
     overlay.classList.remove('active');
     document.body.style.overflow = '';
 }
@@ -150,20 +171,36 @@ function submitBooking() {
         return;
     }
 
-    // Close popup
-    closeBookingForm();
+    // Hide the form fields
+    const formGroups = document.querySelectorAll('#bookingPopup .form-group, #bookingPopup .submit-booking, #bookingPopup h3');
+    formGroups.forEach(element => {
+        element.style.display = 'none';
+    });
     
-    // Show confirmation
+    // Show confirmation inside the popup
     document.getElementById('bookingConfirmation').classList.add('active');
 
-    // Reset form
+    // Reset and close after 3 seconds
     setTimeout(() => {
-        document.getElementById('bookingForm').reset();
+        closeBookingForm();
+        
+        // Reset form and show form fields again
+        const bookingForm = document.querySelector('#bookingPopup');
+        bookingForm.querySelectorAll('input[type="text"], input[type="email"], input[type="date"], select').forEach(input => {
+            input.value = '';
+        });
+        
         document.querySelectorAll('.seating-option').forEach(opt => {
             opt.classList.remove('selected');
         });
         selectedSeating = '';
+        
         document.getElementById('bookingConfirmation').classList.remove('active');
+        
+        // Show form fields again
+        formGroups.forEach(element => {
+            element.style.display = '';
+        });
     }, 3000);
 }
 
@@ -191,3 +228,13 @@ function submitNewsletter() {
         document.getElementById('signupConfirmation').classList.remove('active');
     }, 3000);
 }
+
+// Close popup when clicking outside
+document.addEventListener('click', (e) => {
+    const popup = document.getElementById('bookingPopup');
+    const overlay = document.getElementById('bookingOverlay');
+    
+    if (e.target === overlay) {
+        closeBookingForm();
+    }
+});
