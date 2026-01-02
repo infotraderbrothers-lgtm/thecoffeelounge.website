@@ -112,7 +112,7 @@
 
     <div class="hero">
         <div class="hero-content">
-            <h2>Welcome to Your<br>Coffee Haven</h2>
+            <h2>Welcome to Your Coffee Haven</h2>
             <p>Step into a warm and inviting space where every cup is crafted with care</p>
             <button class="hero-button">VIEW OUR MENU</button>
         </div>
@@ -171,7 +171,11 @@
                     <p style="color: #666; margin-bottom: 1rem;">Reserve your spot at our lounge</p>
                     <button class="directions-link" onclick="toggleBookingForm()">Book Now</button>
                     
+                    <div id="bookingOverlay" class="booking-overlay" onclick="closeBookingForm()"></div>
+                    
                     <div id="bookingForm" class="booking-form">
+                        <button class="close-popup" onclick="closeBookingForm()">×</button>
+                        <h3 style="margin-bottom: 1.5rem; color: #3a3a3a;">Book Your Table</h3>
                         <div class="form-group">
                             <label>Seating Preference</label>
                             <div class="seating-options">
@@ -283,7 +287,9 @@
                  Get Directions From My Location
             </button>
         </div>
+    </div>
 
+    <div class="reviews-wrapper">
         <div class="reviews-section">
             <h3>What Our Customers Say</h3>
             <div class="reviews-container">
@@ -319,7 +325,9 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="container">
         <div class="connect-section">
             <h3>Connect With Us</h3>
             <p>Stay updated with exclusive deals and weekly specials</p>
