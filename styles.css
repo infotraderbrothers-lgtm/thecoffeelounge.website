@@ -261,11 +261,11 @@ h1 {
 }
 
 .info-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: #f5e6d3;
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-    border: 1px solid #f0f0f0;
+    border: 1px solid #e5d6c3;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -276,9 +276,9 @@ h1 {
 
 .info-card h3 {
     font-size: 1.8rem;
-    font-weight: 300;
+    font-weight: 700;
     margin-bottom: 1.5rem;
-    color: #2c2c2c;
+    color: #3a3a3a;
     letter-spacing: 1px;
 }
 
