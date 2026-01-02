@@ -569,7 +569,7 @@ h1 {
 }
 
 .connect-section {
-    background: rgba(255, 255, 255, 0.9);
+    background: #f5e6d3;
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
@@ -582,12 +582,12 @@ h1 {
     font-size: 1.8rem;
     font-weight: 300;
     margin-bottom: 1rem;
-    color: #2c2c2c;
+    color: #3a3a3a;
     letter-spacing: 1px;
 }
 
 .connect-section p {
-    color: #666;
+    color: #3a3a3a;
     margin-bottom: 1.5rem;
 }
 
@@ -616,8 +616,8 @@ h1 {
 
 .email-signup button {
     padding: 1rem 2rem;
-    background: #2c2c2c;
-    color: white;
+    background: #3a3a3a;
+    color: #f5e6d3;
     border: none;
     border-radius: 0 25px 25px 0;
     font-size: 1rem;
@@ -629,7 +629,7 @@ h1 {
 }
 
 .email-signup button:hover {
-    background: #1a1a1a;
+    background: #2c2c2c;
 }
 
 .consent-checkbox {
@@ -648,7 +648,7 @@ h1 {
 
 .consent-checkbox label {
     font-size: 0.85rem;
-    color: #666;
+    color: #3a3a3a;
     line-height: 1.5;
     cursor: pointer;
 }
@@ -750,13 +750,14 @@ h1 {
 }
 
 .reviews-section h3 {
-    font-size: 2rem;
-    font-weight: 300;
+    font-size: 1.8rem;
+    font-weight: 700;
     margin-bottom: 1.5rem;
     color: #f5e6d3;
     letter-spacing: 2px;
     text-align: center;
     text-transform: uppercase;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 .reviews-container {
@@ -905,6 +906,7 @@ footer p {
 
     .reviews-section h3 {
         font-size: 1.5rem;
+        font-weight: 700;
         margin-bottom: 1rem;
     }
 
