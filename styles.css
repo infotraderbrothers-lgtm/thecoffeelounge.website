@@ -137,6 +137,15 @@ h1 {
     padding: 4rem 5%;
 }
 
+.reviews-wrapper {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
 .carousel-container {
     position: relative;
     width: 100%;
@@ -610,10 +619,20 @@ h1 {
     transform: translateY(-1px);
 }
 
+.reviews-wrapper {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-bottom: 4rem;
+}
+
 .reviews-section {
-    background: #4a4a4a;
+    background: #3a3a3a;
     padding: 2rem 0;
-    margin: 0 0 4rem 0;
+    margin: 0;
     width: 100%;
 }
 
