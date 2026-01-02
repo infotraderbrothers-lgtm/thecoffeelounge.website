@@ -8,55 +8,29 @@ function getDirections() {
     window.open(mapsUrl, '_blank');
 }
 
-// Carousel functionality for multiple carousels
+// Carousel Manager with sequential rotation
 class CarouselManager {
-    constructor(carouselNumber) {
+    constructor(carouselNumber, startDelay) {
         this.carouselNumber = carouselNumber;
         this.currentSlide = 0;
         this.slides = document.querySelectorAll(`[data-carousel="${carouselNumber}"].carousel-track .carousel-slide`);
-        this.dots = document.querySelectorAll(`[data-carousel="${carouselNumber}"].carousel-nav .carousel-dot`);
         this.totalSlides = this.slides.length;
         this.autoPlayInterval = null;
+        this.startDelay = startDelay;
         
         this.init();
     }
     
     init() {
-        // Arrow button event listeners
-        const nextBtn = document.querySelector(`.carousel-arrow.next[data-carousel="${this.carouselNumber}"]`);
-        const prevBtn = document.querySelector(`.carousel-arrow.prev[data-carousel="${this.carouselNumber}"]`);
-        
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                this.nextSlide();
-                this.startAutoPlay();
-            });
-        }
-        
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                this.prevSlide();
-                this.startAutoPlay();
-            });
-        }
-        
-        // Dot navigation
-        this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                const direction = index > this.currentSlide ? 'next' : 'prev';
-                this.showSlide(index, direction);
-                this.startAutoPlay();
-            });
-        });
-        
-        // Start auto-advance
-        this.startAutoPlay();
+        // Start auto-advance after initial delay
+        setTimeout(() => {
+            this.startAutoPlay();
+        }, this.startDelay);
     }
     
     showSlide(n, direction = 'next') {
         // Remove all classes from current slide
         this.slides[this.currentSlide].classList.remove('active', 'prev');
-        this.dots[this.currentSlide].classList.remove('active');
         
         // Calculate new slide index with proper wrapping
         if (n >= this.totalSlides) {
@@ -87,20 +61,16 @@ class CarouselManager {
         this.slides[this.currentSlide].classList.add('active');
         this.slides[this.currentSlide].style.transform = 'translateX(0)';
         this.slides[this.currentSlide].style.opacity = '1';
-        this.dots[this.currentSlide].classList.add('active');
     }
     
     nextSlide() {
         this.showSlide(this.currentSlide + 1, 'next');
     }
     
-    prevSlide() {
-        this.showSlide(this.currentSlide - 1, 'prev');
-    }
-    
     startAutoPlay() {
         this.stopAutoPlay();
-        this.autoPlayInterval = setInterval(() => this.nextSlide(), 5000);
+        // Each carousel advances every 12 seconds (4 seconds × 3 carousels)
+        this.autoPlayInterval = setInterval(() => this.nextSlide(), 12000);
     }
     
     stopAutoPlay() {
@@ -110,10 +80,14 @@ class CarouselManager {
     }
 }
 
-// Initialize all three carousels
-const carousel1 = new CarouselManager(1);
-const carousel2 = new CarouselManager(2);
-const carousel3 = new CarouselManager(3);
+// Initialize all three carousels with staggered start times
+// Carousel 1 starts immediately
+// Carousel 2 starts after 4 seconds
+// Carousel 3 starts after 8 seconds
+// This creates the pattern: 1 -> 2 -> 3 -> 1 -> 2 -> 3...
+const carousel1 = new CarouselManager(1, 0);
+const carousel2 = new CarouselManager(2, 4000);
+const carousel3 = new CarouselManager(3, 8000);
 
 // Booking form functionality
 let selectedSeating = '';
