@@ -244,7 +244,7 @@ h1 {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    color: #3a3a3a;
+    color: #f5e6d3;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -261,7 +261,7 @@ h1 {
     justify-content: space-between;
     gap: 0.3rem;
     font-size: 1rem;
-    color: #3a3a3a;
+    color: #f5e6d3;
 }
 
 .hours-list-redesign li:last-child {
@@ -270,7 +270,7 @@ h1 {
 
 .hours-list-redesign .day {
     font-weight: 500;
-    color: #3a3a3a;
+    color: #f5e6d3;
     flex-shrink: 0;
 }
 
