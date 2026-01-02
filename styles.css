@@ -235,15 +235,15 @@ h1 {
 }
 
 .animated-logo-small {
-    width: 180px;
-    height: 180px;
+    width: 250px;
+    height: 250px;
     display: block;
 }
 
 .hours-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     color: #f5e6d3;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -251,15 +251,15 @@ h1 {
 
 .hours-list-redesign {
     list-style: none;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 .hours-list-redesign li {
-    padding: 0.8rem 0;
+    padding: 0.6rem 0;
     border-bottom: 1px solid rgba(245, 230, 211, 0.2);
     display: flex;
     justify-content: space-between;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #f5e6d3;
 }
 
