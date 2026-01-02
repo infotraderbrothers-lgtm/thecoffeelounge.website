@@ -258,11 +258,13 @@
                                             fill="none"/>
                                 </defs>
                                 
-                                <!-- Top text -->
-                                <text font-family="Arial, sans-serif" font-size="26" font-weight="900" fill="#3a3a3a" letter-spacing="6">
-                                    <textPath href="#topPathSmall" startOffset="50%" text-anchor="middle">
-                                        THE EDINBURGH
-                                    </textPath>
+                                <!-- Top text with animation -->
+                                <g>
+                                    <text font-family="Arial, sans-serif" font-size="26" font-weight="900" fill="#3a3a3a" letter-spacing="6">
+                                        <textPath href="#topPathSmall" startOffset="50%" text-anchor="middle">
+                                            THE EDINBURGH
+                                        </textPath>
+                                    </text>
                                     <animateTransform
                                         attributeName="transform"
                                         attributeType="XML"
@@ -271,13 +273,15 @@
                                         to="360 200 200"
                                         dur="12s"
                                         repeatCount="indefinite"/>
-                                </text>
+                                </g>
                                 
-                                <!-- Bottom text -->
-                                <text font-family="Arial, sans-serif" font-size="26" font-weight="900" fill="#3a3a3a" letter-spacing="6">
-                                    <textPath href="#bottomPathSmall" startOffset="50%" text-anchor="middle">
-                                        COFFEE LOUNGE
-                                    </textPath>
+                                <!-- Bottom text with animation -->
+                                <g>
+                                    <text font-family="Arial, sans-serif" font-size="26" font-weight="900" fill="#3a3a3a" letter-spacing="6">
+                                        <textPath href="#bottomPathSmall" startOffset="50%" text-anchor="middle">
+                                            COFFEE LOUNGE
+                                        </textPath>
+                                    </text>
                                     <animateTransform
                                         attributeName="transform"
                                         attributeType="XML"
@@ -286,7 +290,7 @@
                                         to="360 200 200"
                                         dur="12s"
                                         repeatCount="indefinite"/>
-                                </text>
+                                </g>
                             </svg>
                         </div>
                     </div>
