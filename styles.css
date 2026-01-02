@@ -207,20 +207,36 @@ h1 {
     padding: 3rem;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
+}
+
+.hours-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.hours-left {
+    flex: 1;
+    text-align: left;
+}
+
+.hours-right {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo-container-small {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
 }
 
 .animated-logo-small {
-    width: 120px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
     display: block;
 }
 
@@ -278,7 +294,6 @@ h1 {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
-
 /* Old Info Section - Keep for compatibility */
 .info-section {
     display: grid;
