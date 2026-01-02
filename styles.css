@@ -70,7 +70,7 @@ h1 {
     height: 85vh;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
                 url('https://github.com/infotraderbrothers-lgtm/thecoffeelounge.website/blob/main/images/webbanner.webp?raw=true');
-    background-size: contain;
+    background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     background-color: #1a1a1a;
