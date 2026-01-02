@@ -176,115 +176,121 @@
             </div>
         </div>
 
-        <!-- Updated Info Section with Opening Hours and Book Now -->
+<!-- Updated Info Section with Opening Hours and Book Now -->
         <div class="info-section-redesign">
             <div class="hours-booking-card">
-                <div class="logo-container-small">
-                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="animated-logo-small">
-                        <!-- Brick wall circle background -->
-                        <circle cx="200" cy="200" r="80" fill="#8B4513" stroke="#8B4513" stroke-width="2"/>
-                        
-                        <!-- Brick pattern -->
-                        <g transform="translate(200, 200)">
-                            <defs>
-                                <pattern id="brickPatternSmall" x="0" y="0" width="20" height="8" patternUnits="userSpaceOnUse">
-                                    <rect width="20" height="8" fill="#8B4513"/>
-                                    <rect x="0" y="0" width="9" height="3.5" fill="none" stroke="#A0522D" stroke-width="0.5"/>
-                                    <rect x="10" y="0" width="9" height="3.5" fill="none" stroke="#A0522D" stroke-width="0.5"/>
-                                    <rect x="5" y="4" width="9" height="3.5" fill="none" stroke="#A0522D" stroke-width="0.5"/>
-                                    <rect x="-5" y="4" width="9" height="3.5" fill="none" stroke="#A0522D" stroke-width="0.5"/>
-                                    <rect x="15" y="4" width="9" height="3.5" fill="none" stroke="#A0522D" stroke-width="0.5"/>
-                                </pattern>
-                            </defs>
-                            <circle cx="0" cy="0" r="78" fill="url(#brickPatternSmall)"/>
-                        </g>
-                        
-                        <!-- Coffee beans illustration in center -->
-                        <g transform="translate(200, 200)">
-                            <!-- Left bean -->
-                            <g transform="translate(-25, -5) rotate(-20)">
-                                <ellipse cx="0" cy="0" rx="18" ry="28" fill="#8B4513"/>
-                                <path d="M -4,-25 Q -8,-12 -4,0 Q -8,12 -4,25" 
-                                        stroke="#8B4513" 
-                                        stroke-width="2" 
-                                        fill="none"/>
-                            </g>
-                            
-                            <!-- Middle bean -->
-                            <g transform="translate(0, 8) rotate(10)">
-                                <ellipse cx="0" cy="0" rx="18" ry="28" fill="#8B4513"/>
-                                <path d="M -4,-25 Q -8,-12 -4,0 Q -8,12 -4,25" 
-                                        stroke="#8B4513" 
-                                        stroke-width="2" 
-                                        fill="none"/>
-                            </g>
-                            
-                            <!-- Right bean -->
-                            <g transform="translate(25, -5) rotate(25)">
-                                <ellipse cx="0" cy="0" rx="18" ry="28" fill="#8B4513"/>
-                                <path d="M -4,-25 Q -8,-12 -4,0 Q -8,12 -4,25" 
-                                        stroke="#8B4513" 
-                                        stroke-width="2" 
-                                        fill="none"/>
-                            </g>
-                            
-                            <!-- Shadow/base -->
-                            <ellipse cx="0" cy="35" rx="50" ry="12" fill="#8B4513" opacity="0.3"/>
-                        </g>
-                        
-                        <!-- Circular text paths -->
-                        <defs>
-                            <path id="topPathSmall" 
-                                    d="M 200,200 m -120,0 a 120,120 0 0,1 240,0" 
-                                    fill="none"/>
-                            <path id="bottomPathSmall" 
-                                    d="M 200,200 m 120,0 a 120,120 0 0,1 -240,0" 
-                                    fill="none"/>
-                        </defs>
-                        
-                        <!-- Top text -->
-                        <text font-family="Arial, sans-serif" font-size="26" font-weight="900" fill="#8B4513" letter-spacing="6">
-                            <textPath href="#topPathSmall" startOffset="50%" text-anchor="middle">
-                                THE EDINBURGH
-                            </textPath>
-                            <animateTransform
-                                attributeName="transform"
-                                attributeType="XML"
-                                type="rotate"
-                                from="0 200 200"
-                                to="360 200 200"
-                                dur="12s"
-                                repeatCount="indefinite"/>
-                        </text>
-                        
-                        <!-- Bottom text -->
-                        <text font-family="Arial, sans-serif" font-size="26" font-weight="900" fill="#8B4513" letter-spacing="6">
-                            <textPath href="#bottomPathSmall" startOffset="50%" text-anchor="middle">
-                                COFFEE LOUNGE
-                            </textPath>
-                            <animateTransform
-                                attributeName="transform"
-                                attributeType="XML"
-                                type="rotate"
-                                from="0 200 200"
-                                to="360 200 200"
-                                dur="12s"
-                                repeatCount="indefinite"/>
-                        </text>
-                    </svg>
+                <div class="hours-content-wrapper">
+                    <div class="hours-left">
+                        <h3 class="hours-title">Opening Hours</h3>
+                        <ul class="hours-list-redesign">
+                            <li><span class="day">Monday</span> <span>9:00am - 7:00pm</span></li>
+                            <li><span class="day">Tuesday</span> <span>9:00am - 7:00pm</span></li>
+                            <li><span class="day">Wednesday</span> <span>9:00am - 7:00pm</span></li>
+                            <li><span class="day">Thursday</span> <span>9:00am - 7:00pm</span></li>
+                            <li><span class="day">Friday</span> <span>9:00am - 7:00pm</span></li>
+                            <li><span class="day">Saturday</span> <span>9:00am - 7:00pm</span></li>
+                            <li><span class="day">Sunday</span> <span>9:00am - 6:00pm</span></li>
+                        </ul>
+                        <button class="book-now-button" onclick="toggleBookingForm()">Book Now</button>
+                    </div>
+                    
+                    <div class="hours-right">
+                        <div class="logo-container-small">
+                            <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="animated-logo-small">
+                                <!-- Brick wall circle background -->
+                                <circle cx="200" cy="200" r="80" fill="#f5e6d3" stroke="#f5e6d3" stroke-width="2"/>
+                                
+                                <!-- Brick pattern -->
+                                <g transform="translate(200, 200)">
+                                    <defs>
+                                        <pattern id="brickPatternSmall" x="0" y="0" width="20" height="8" patternUnits="userSpaceOnUse">
+                                            <rect width="20" height="8" fill="#f5e6d3"/>
+                                            <rect x="0" y="0" width="9" height="3.5" fill="none" stroke="#e5d6c3" stroke-width="0.5"/>
+                                            <rect x="10" y="0" width="9" height="3.5" fill="none" stroke="#e5d6c3" stroke-width="0.5"/>
+                                            <rect x="5" y="4" width="9" height="3.5" fill="none" stroke="#e5d6c3" stroke-width="0.5"/>
+                                            <rect x="-5" y="4" width="9" height="3.5" fill="none" stroke="#e5d6c3" stroke-width="0.5"/>
+                                            <rect x="15" y="4" width="9" height="3.5" fill="none" stroke="#e5d6c3" stroke-width="0.5"/>
+                                        </pattern>
+                                    </defs>
+                                    <circle cx="0" cy="0" r="78" fill="url(#brickPatternSmall)"/>
+                                </g>
+                                
+                                <!-- Coffee beans illustration in center -->
+                                <g transform="translate(200, 200)">
+                                    <!-- Left bean -->
+                                    <g transform="translate(-25, -5) rotate(-20)">
+                                        <ellipse cx="0" cy="0" rx="18" ry="28" fill="#3a3a3a"/>
+                                        <path d="M -4,-25 Q -8,-12 -4,0 Q -8,12 -4,25" 
+                                                stroke="#f5e6d3" 
+                                                stroke-width="2" 
+                                                fill="none"/>
+                                    </g>
+                                    
+                                    <!-- Middle bean -->
+                                    <g transform="translate(0, 8) rotate(10)">
+                                        <ellipse cx="0" cy="0" rx="18" ry="28" fill="#3a3a3a"/>
+                                        <path d="M -4,-25 Q -8,-12 -4,0 Q -8,12 -4,25" 
+                                                stroke="#f5e6d3" 
+                                                stroke-width="2" 
+                                                fill="none"/>
+                                    </g>
+                                    
+                                    <!-- Right bean -->
+                                    <g transform="translate(25, -5) rotate(25)">
+                                        <ellipse cx="0" cy="0" rx="18" ry="28" fill="#3a3a3a"/>
+                                        <path d="M -4,-25 Q -8,-12 -4,0 Q -8,12 -4,25" 
+                                                stroke="#f5e6d3" 
+                                                stroke-width="2" 
+                                                fill="none"/>
+                                    </g>
+                                    
+                                    <!-- Shadow/base -->
+                                    <ellipse cx="0" cy="35" rx="50" ry="12" fill="#3a3a3a" opacity="0.3"/>
+                                </g>
+                                
+                                <!-- Circular text paths -->
+                                <defs>
+                                    <path id="topPathSmall" 
+                                            d="M 200,200 m -120,0 a 120,120 0 0,1 240,0" 
+                                            fill="none"/>
+                                    <path id="bottomPathSmall" 
+                                            d="M 200,200 m 120,0 a 120,120 0 0,1 -240,0" 
+                                            fill="none"/>
+                                </defs>
+                                
+                                <!-- Top text -->
+                                <text font-family="Arial, sans-serif" font-size="26" font-weight="900" fill="#3a3a3a" letter-spacing="6">
+                                    <textPath href="#topPathSmall" startOffset="50%" text-anchor="middle">
+                                        THE EDINBURGH
+                                    </textPath>
+                                    <animateTransform
+                                        attributeName="transform"
+                                        attributeType="XML"
+                                        type="rotate"
+                                        from="0 200 200"
+                                        to="360 200 200"
+                                        dur="12s"
+                                        repeatCount="indefinite"/>
+                                </text>
+                                
+                                <!-- Bottom text -->
+                                <text font-family="Arial, sans-serif" font-size="26" font-weight="900" fill="#3a3a3a" letter-spacing="6">
+                                    <textPath href="#bottomPathSmall" startOffset="50%" text-anchor="middle">
+                                        COFFEE LOUNGE
+                                    </textPath>
+                                    <animateTransform
+                                        attributeName="transform"
+                                        attributeType="XML"
+                                        type="rotate"
+                                        from="0 200 200"
+                                        to="360 200 200"
+                                        dur="12s"
+                                        repeatCount="indefinite"/>
+                                </text>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-                
-                <h3 class="hours-title">Opening Hours</h3>
-                <ul class="hours-list-redesign">
-                    <li><span class="day">Monday</span> <span>9:00am - 7:00pm</span></li>
-                    <li><span class="day">Tuesday</span> <span>9:00am - 7:00pm</span></li>
-                    <li><span class="day">Wednesday</span> <span>9:00am - 7:00pm</span></li>
-                    <li><span class="day">Thursday</span> <span>9:00am - 7:00pm</span></li>
-                    <li><span class="day">Friday</span> <span>9:00am - 7:00pm</span></li>
-                    <li><span class="day">Saturday</span> <span>9:00am - 7:00pm</span></li>
-                    <li><span class="day">Sunday</span> <span>9:00am - 6:00pm</span></li>
-                </ul>
-                <button class="book-now-button" onclick="toggleBookingForm()">Book Now</button>
             </div>
         </div>
 
