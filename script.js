@@ -99,14 +99,33 @@ let selectedSeating = '';
 
 function toggleBookingForm() {
     const form = document.getElementById('bookingForm');
+    const overlay = document.getElementById('bookingOverlay');
     const confirmation = document.getElementById('bookingConfirmation');
+    
     confirmation.classList.remove('active');
     form.classList.toggle('active');
+    overlay.classList.toggle('active');
     
     // Set minimum date to today
     const dateInput = document.getElementById('bookingDate');
     const today = new Date().toISOString().split('T')[0];
     dateInput.setAttribute('min', today);
+    
+    // Prevent body scroll when popup is open
+    if (form.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+}
+
+function closeBookingForm() {
+    const form = document.getElementById('bookingForm');
+    const overlay = document.getElementById('bookingOverlay');
+    
+    form.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
 }
 
 function selectSeating(element, type) {
@@ -131,8 +150,10 @@ function submitBooking() {
         return;
     }
 
-    // Hide form and show confirmation
-    document.getElementById('bookingForm').classList.remove('active');
+    // Close popup
+    closeBookingForm();
+    
+    // Show confirmation
     document.getElementById('bookingConfirmation').classList.add('active');
 
     // Reset form
@@ -142,7 +163,8 @@ function submitBooking() {
             opt.classList.remove('selected');
         });
         selectedSeating = '';
-    }, 500);
+        document.getElementById('bookingConfirmation').classList.remove('active');
+    }, 3000);
 }
 
 function submitNewsletter() {
