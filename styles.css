@@ -859,9 +859,14 @@ footer p {
         padding: 2rem 1.5rem;
     }
 
+    .hours-content-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
     .animated-logo-small {
-        width: 100px;
-        height: 100px;
+        width: 150px;
+        height: 150px;
     }
 
     .hours-title {
@@ -922,5 +927,188 @@ footer p {
     .booking-popup {
         width: 95%;
         padding: 2rem 1.5rem;
+    }
+}
+
+/* Extra small devices (Samsung Galaxy Fold and similar narrow screens) */
+@media (max-width: 380px) {
+    body {
+        padding-top: 65px;
+    }
+
+    header {
+        padding: 0.5rem 3%;
+    }
+
+    .header-content {
+        gap: 1rem;
+    }
+
+    .animated-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    h1 {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+
+    .tagline {
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+    }
+
+    .hero {
+        height: 50vh;
+        padding: 1.5rem 4%;
+    }
+
+    .hero-content h2 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .hero-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    .container {
+        padding: 3rem 4%;
+    }
+
+    .carousel-container {
+        height: 200px;
+        border-radius: 15px;
+    }
+
+    .hours-booking-card {
+        padding: 1.5rem 1rem;
+        border-radius: 15px;
+    }
+
+    .hours-title {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+
+    .hours-list-redesign li {
+        font-size: 0.85rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+        padding: 0.5rem 0;
+    }
+
+    .animated-logo-small {
+        width: 120px;
+        height: 120px;
+    }
+
+    .book-now-button {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+
+    .connect-section {
+        padding: 2rem 1.5rem;
+        border-radius: 15px;
+    }
+
+    .connect-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .email-signup {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .email-signup input {
+        border-radius: 25px;
+        border: 2px solid #e8e8e8;
+    }
+
+    .email-signup button {
+        border-radius: 25px;
+    }
+
+    .social-icons {
+        gap: 0.75rem;
+    }
+
+    .social-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .map-container {
+        height: 300px;
+        border-radius: 15px;
+    }
+
+    .directions-button {
+        font-size: 0.95rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .reviews-section h3 {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+
+    .review-card {
+        padding: 0.9rem;
+        border-radius: 6px;
+    }
+
+    .review-text {
+        font-size: 0.75rem;
+    }
+
+    .review-author {
+        font-size: 0.7rem;
+    }
+
+    .booking-popup {
+        width: 96%;
+        padding: 1.5rem 1rem;
+        border-radius: 15px;
+    }
+
+    .booking-popup h3 {
+        font-size: 1.3rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 0.7rem;
+        font-size: 0.95rem;
+    }
+
+    .seating-option {
+        padding: 0.7rem;
+        font-size: 0.85rem;
+    }
+
+    .submit-booking {
+        padding: 0.9rem;
+        font-size: 0.95rem;
+    }
+
+    footer p {
+        font-size: 0.8rem;
     }
 }
