@@ -259,7 +259,7 @@ h1 {
     border-bottom: 1px solid rgba(58, 58, 58, 0.2);
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.3rem;
     font-size: 1rem;
     color: #3a3a3a;
 }
